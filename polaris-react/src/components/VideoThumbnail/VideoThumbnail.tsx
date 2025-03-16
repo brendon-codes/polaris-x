@@ -1,6 +1,7 @@
 import React from 'react';
 import {PlayIcon} from '@shopify/polaris-icons';
 
+import {classNames} from '../../utilities/css';
 import {useI18n} from '../../utilities/i18n';
 import {
   secondsToTimeComponents,
@@ -41,6 +42,7 @@ export interface VideoThumbnailProps {
   onClick(): void;
   /** Callback on mouse enter, focus, or touch start of thumbnail. Use to trigger video preload. */
   onBeforeStartPlaying?(): void;
+  className?: string;
 }
 
 export function VideoThumbnail({
@@ -51,6 +53,7 @@ export function VideoThumbnail({
   accessibilityLabel,
   onClick,
   onBeforeStartPlaying,
+  className,
 }: VideoThumbnailProps) {
   const i18n = useI18n();
   const {isNavigationCollapsed} = useMediaQuery();
@@ -120,7 +123,7 @@ export function VideoThumbnail({
   }
 
   return (
-    <div className={styles.ThumbnailContainer}>
+    <div className={classNames(styles.ThumbnailContainer, className)}>
       <div
         className={styles.Thumbnail}
         style={{backgroundImage: `url(${thumbnailUrl})`}}

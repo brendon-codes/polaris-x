@@ -131,5 +131,10 @@
     "last 1 firefoxandroid versions",
     "ios >= 13.4",
     "node 20.10.0"
-  ]
+  ],
+  "overrides": {
+    "vite-plugin-replace": {
+      "vite": "^4.5.6"
+    }
+  }
 }

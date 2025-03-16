@@ -11,7 +11,11 @@ describe('classNames', () => {
         'btn',
         true && 'btn-sm',
         false && 'b',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         undefined && 'c',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         null && 'd',
         0 && 'e',
       ),

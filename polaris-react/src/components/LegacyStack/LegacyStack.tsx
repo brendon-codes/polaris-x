@@ -38,6 +38,7 @@ export interface LegacyStackProps {
   alignment?: Alignment;
   /** Adjust horizontal alignment of elements */
   distribution?: Distribution;
+  className?: string;
 }
 /** @deprecated Use the BlockStack component instead */
 export const LegacyStack = memo(function Stack({
@@ -47,14 +48,16 @@ export const LegacyStack = memo(function Stack({
   distribution,
   alignment,
   wrap,
+  className,
 }: LegacyStackProps) {
-  const className = classNames(
+  const classNameAll = classNames(
     styles.LegacyStack,
     vertical && styles.vertical,
     spacing && styles[variationName('spacing', spacing)],
     distribution && styles[variationName('distribution', distribution)],
     alignment && styles[variationName('alignment', alignment)],
     wrap === false && styles.noWrap,
+    className,
   );
 
   const itemMarkup = elementChildren(children).map((child, index) => {
@@ -62,7 +65,7 @@ export const LegacyStack = memo(function Stack({
     return wrapWithComponent(child, Item, props);
   });
 
-  return <div className={className}>{itemMarkup}</div>;
+  return <div className={classNameAll}>{itemMarkup}</div>;
 }) as NamedExoticComponent<LegacyStackProps> & {
   Item: typeof Item;
 };

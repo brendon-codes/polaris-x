@@ -85,8 +85,9 @@ const ScrollableComponent = forwardRef<ScrollableRef, ScrollableProps>(
       (scrollY: number, options: ScrollToOptions = {}) => {
         const optionsBehavior = options.behavior || 'smooth';
         const behavior = prefersReducedMotion() ? 'auto' : optionsBehavior;
-        // @ts-expect-error TS removed "instant" option but browsers support it.
-        scrollArea.current?.scrollTo({top: scrollY, behavior});
+        /** @deprecated: This is a workaround until TS is updated */
+        const behaviourTmp = behavior as Exclude<typeof behavior, 'instant'>;
+        scrollArea.current?.scrollTo({top: scrollY, behavior: behaviourTmp});
       },
       [],
     );

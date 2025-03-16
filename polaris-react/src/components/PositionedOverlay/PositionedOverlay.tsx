@@ -42,6 +42,7 @@ export interface PositionedOverlayProps {
   zIndexOverride?: number;
   render(overlayDetails: OverlayDetails): React.ReactNode;
   onScrollOut?(): void;
+  className?: string;
 }
 
 interface State {
@@ -135,6 +136,7 @@ export class PositionedOverlay extends PureComponent<
       preventInteraction,
       classNames: propClassNames,
       zIndexOverride,
+      className,
     } = this.props;
 
     const style = {
@@ -145,15 +147,16 @@ export class PositionedOverlay extends PureComponent<
       zIndex: zIndexOverride || zIndex || undefined,
     };
 
-    const className = classNames(
+    const classNameAll = classNames(
       styles.PositionedOverlay,
       fixed && styles.fixed,
       preventInteraction && styles.preventInteraction,
       propClassNames,
+      className,
     );
 
     return (
-      <div className={className} style={style} ref={this.setOverlay}>
+      <div className={classNameAll} style={style} ref={this.setOverlay}>
         <EventListener
           event="resize"
           handler={this.handleMeasurement}

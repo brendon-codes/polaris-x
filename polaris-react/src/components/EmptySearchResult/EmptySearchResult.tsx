@@ -12,12 +12,14 @@ export interface EmptySearchResultProps {
   title: string;
   description?: string;
   withIllustration?: boolean;
+  className?: string;
 }
 
 export function EmptySearchResult({
   title,
   description,
   withIllustration,
+  className,
 }: EmptySearchResultProps) {
   const i18n = useI18n();
   const altText = i18n.translate('Polaris.EmptySearchResult.altText');
@@ -29,7 +31,7 @@ export function EmptySearchResult({
   ) : null;
 
   return (
-    <LegacyStack alignment="center" vertical>
+    <LegacyStack alignment="center" vertical className={className}>
       {illustrationMarkup}
       <Text variant="headingLg" as="p">
         {title}

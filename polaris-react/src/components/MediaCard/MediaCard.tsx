@@ -43,6 +43,7 @@ interface MediaCardProps {
   size?: Size;
   /** Callback when MediaCard is dismissed */
   onDismiss?: () => void;
+  className?: string;
 }
 
 export function MediaCard({
@@ -55,6 +56,7 @@ export function MediaCard({
   portrait = false,
   size = 'medium',
   onDismiss,
+  className,
 }: MediaCardProps) {
   const i18n = useI18n();
   const {value: popoverActive, toggle: togglePopoverActive} = useToggle(false);
@@ -161,7 +163,7 @@ export function MediaCard({
     ) : null;
 
   return (
-    <LegacyCard>
+    <LegacyCard className={className}>
       <div className={mediaCardClassName}>
         <div className={mediaContainerClassName}>{children}</div>
         <div className={infoContainerClassName}>

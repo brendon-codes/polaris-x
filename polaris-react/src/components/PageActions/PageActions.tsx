@@ -11,6 +11,7 @@ import {ButtonGroup} from '../ButtonGroup';
 import {buttonsFrom} from '../Button';
 import {isInterface} from '../../utilities/is-interface';
 import {isReactElement} from '../../utilities/is-react-element';
+import {classNames} from '../../utilities/css';
 
 import styles from './PageActions.module.css';
 
@@ -19,6 +20,7 @@ export interface PageActionsProps {
   primaryAction?: (DisableableAction & LoadableAction) | React.ReactNode;
   /** The secondary actions for the page */
   secondaryActions?: ComplexAction[] | React.ReactNode;
+  className?: string;
 }
 
 type MaybeJSX = JSX.Element | null;
@@ -26,10 +28,11 @@ type MaybeJSX = JSX.Element | null;
 export function PageActions({
   primaryAction,
   secondaryActions,
+  className,
 }: PageActionsProps) {
   let primaryActionMarkup: MaybeJSX = null;
   if (isReactElement(primaryAction)) {
-    primaryActionMarkup = <>{primaryAction}</>;
+    primaryActionMarkup = <>{primaryAction as React.ReactNode}</>;
   } else if (primaryAction) {
     primaryActionMarkup = buttonsFrom(primaryAction, {variant: 'primary'});
   }
@@ -40,11 +43,11 @@ export function PageActions({
       <ButtonGroup>{buttonsFrom(secondaryActions)}</ButtonGroup>
     );
   } else if (isReactElement(secondaryActions)) {
-    secondaryActionsMarkup = <>{secondaryActions}</>;
+    secondaryActionsMarkup = <>{secondaryActions as React.ReactNode}</>;
   }
 
   return (
-    <div className={styles.PageActions}>
+    <div className={classNames(styles.PageActions, className)}>
       <LegacyStack distribution="trailing" spacing="tight">
         {secondaryActionsMarkup}
         {primaryActionMarkup}

@@ -51,6 +51,7 @@ export interface DatePickerProps {
   onChange?(date: Range): void;
   /** Callback when month is changed. */
   onMonthChange?(month: number, year: number): void;
+  className?: string;
 }
 
 export function DatePicker({
@@ -67,6 +68,7 @@ export function DatePicker({
   dayAccessibilityLabelPrefix,
   onMonthChange,
   onChange = noop,
+  className,
 }: DatePickerProps) {
   const i18n = useI18n();
   const [hoverDate, setHoverDate] = useState<Date | undefined>(undefined);
@@ -248,7 +250,7 @@ export function DatePicker({
     />
   ) : null;
 
-  const datePickerClassName = classNames(styles.DatePicker);
+  const datePickerClassName = classNames(styles.DatePicker, className);
 
   return (
     <div

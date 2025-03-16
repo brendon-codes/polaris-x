@@ -18,18 +18,23 @@ export interface SpinnerProps {
   accessibilityLabel?: string;
   /** Allows the component to apply the correct accessibility roles based on focus */
   hasFocusableParent?: boolean;
+  className?: string;
+  labelClassName?: string;
 }
 
 export function Spinner({
   size = 'large',
   accessibilityLabel,
   hasFocusableParent,
+  className,
+  labelClassName,
 }: SpinnerProps) {
   const isAfterInitialMount = useIsAfterInitialMount();
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Spinner,
     size && styles[variationName('size', size)],
+    className,
   );
 
   const spinnerSVGMarkup =
@@ -56,8 +61,10 @@ export function Spinner({
 
   return (
     <>
-      <span className={className}>{spinnerSVGMarkup}</span>
-      <span {...spanAttributes}>{accessibilityLabelMarkup}</span>
+      <span className={classNameAll}>{spinnerSVGMarkup}</span>
+      <span {...spanAttributes} className={labelClassName}>
+        {accessibilityLabelMarkup}
+      </span>
     </>
   );
 }

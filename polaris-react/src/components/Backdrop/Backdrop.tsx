@@ -12,16 +12,24 @@ export interface BackdropProps {
   onClick?(): void;
   onTouchStart?(): void;
   setClosing?: Dispatch<SetStateAction<boolean>>;
+  className?: string;
 }
 
 export function Backdrop(props: BackdropProps) {
-  const {onClick, onTouchStart, belowNavigation, transparent, setClosing} =
-    props;
+  const {
+    onClick,
+    onTouchStart,
+    belowNavigation,
+    transparent,
+    setClosing,
+    className,
+  } = props;
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Backdrop,
     belowNavigation && styles.belowNavigation,
     transparent && styles.transparent,
+    className,
   );
 
   const handleMouseDown = () => {
@@ -44,7 +52,7 @@ export function Backdrop(props: BackdropProps) {
     <>
       <ScrollLock />
       <div
-        className={className}
+        className={classNameAll}
         onClick={handleClick}
         onTouchStart={onTouchStart}
         onMouseDown={handleMouseDown}

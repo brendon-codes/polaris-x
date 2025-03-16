@@ -17,9 +17,14 @@ export interface DescriptionListProps {
   items: Item[];
   /** Determines the spacing between list items */
   gap?: 'tight' | 'loose';
+  className?: string;
 }
 
-export function DescriptionList({items, gap = 'loose'}: DescriptionListProps) {
+export function DescriptionList({
+  items,
+  gap = 'loose',
+  className,
+}: DescriptionListProps) {
   // There's no good key to give React so using the index is a last resport.
   // we can't use the term/description value as it may be a react component
   // which can't be stringified
@@ -38,10 +43,11 @@ export function DescriptionList({items, gap = 'loose'}: DescriptionListProps) {
     [],
   );
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.DescriptionList,
     gap === 'tight' && styles.spacingTight,
+    className,
   );
 
-  return <dl className={className}>{terms}</dl>;
+  return <dl className={classNameAll}>{terms}</dl>;
 }

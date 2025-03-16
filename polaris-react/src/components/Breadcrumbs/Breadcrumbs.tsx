@@ -8,9 +8,10 @@ import {Button} from '../Button';
 export interface BreadcrumbsProps {
   /** Back action link */
   backAction: CallbackAction | LinkAction;
+  className?: string;
 }
 
-export function Breadcrumbs({backAction}: BreadcrumbsProps) {
+export function Breadcrumbs({backAction, className}: BreadcrumbsProps) {
   const {content} = backAction;
 
   return (
@@ -21,6 +22,7 @@ export function Breadcrumbs({backAction}: BreadcrumbsProps) {
       onPointerDown={handleMouseUpByBlurring}
       icon={ArrowLeftIcon}
       accessibilityLabel={backAction.accessibilityLabel ?? content}
+      className={className}
     />
   );
 }

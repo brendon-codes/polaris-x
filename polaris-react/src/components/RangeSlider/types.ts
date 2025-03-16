@@ -40,4 +40,5 @@ export interface RangeSliderProps {
   onFocus?(): void;
   /** Callback when focus is removed */
   onBlur?(): void;
+  className?: string;
 }

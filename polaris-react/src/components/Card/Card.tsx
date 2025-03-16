@@ -31,6 +31,7 @@ export interface CardProps {
    * @default 'sm'
    */
   roundedAbove?: BreakpointsAlias;
+  className?: string;
 }
 
 export const Card = ({
@@ -38,6 +39,7 @@ export const Card = ({
   background = 'bg-surface',
   padding = {xs: '400'},
   roundedAbove = 'sm',
+  className,
 }: CardProps) => {
   const breakpoints = useBreakpoints();
   const defaultBorderRadius: BorderRadiusAliasOrScale = '300';
@@ -49,6 +51,7 @@ export const Card = ({
         boxShadow="100"
         borderRadius={hasBorderRadius ? defaultBorderRadius : '0'}
         zIndex="32"
+        className={className}
       >
         <Box
           background={background}

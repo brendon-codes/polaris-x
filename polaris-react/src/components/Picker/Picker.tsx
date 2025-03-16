@@ -48,6 +48,7 @@ export interface PickerProps extends Omit<ListboxProps, 'children'> {
   onScrolledToBottom?(): void;
   /** Callback fired when the popover closes */
   onClose?(): void;
+  className?: string;
 }
 
 const FILTER_REGEX = (value: string) => new RegExp(value, 'i');
@@ -64,6 +65,7 @@ export function Picker({
   addAction,
   onScrolledToBottom,
   onClose,
+  className,
   ...listboxProps
 }: PickerProps) {
   const activatorRef = createRef<HTMLButtonElement>();
@@ -224,6 +226,7 @@ export function Picker({
       onClose={handleClose}
       preferredPosition="cover"
       preventFocusOnClose
+      className={className}
     >
       <Popover.Pane onScrolledToBottom={onScrolledToBottom} height={height}>
         {searchField ? (

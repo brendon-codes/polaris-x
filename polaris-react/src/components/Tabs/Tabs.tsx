@@ -56,6 +56,7 @@ export interface TabsProps {
   onSelect?: (selectedTabIndex: number) => void;
   /** Optional callback invoked when a merchant saves a new view from the Modal */
   onCreateNewView?: (value: string) => Promise<boolean>;
+  className?: string;
 }
 const CREATE_NEW_VIEW_ID = 'create-new-view';
 
@@ -71,6 +72,7 @@ export const Tabs = ({
   fitted,
   disclosureText,
   disclosureZIndexOverride,
+  className,
 }: TabsProps) => {
   const i18n = useI18n();
   const {mdDown} = useBreakpoints();
@@ -559,7 +561,7 @@ export const Tabs = ({
     : null;
 
   return (
-    <div className={styles.Outer}>
+    <div className={classNames(styles.Outer, className)}>
       <Box padding={{md: '200'}}>
         {tabMeasurer}
         <div className={wrapperClassNames} ref={scrollRef}>

@@ -22,19 +22,26 @@ export interface ListProps {
   type?: Type;
   /** List item elements */
   children?: React.ReactNode;
+  className?: string;
 }
 
 export const List: React.FunctionComponent<ListProps> & {
   Item: typeof Item;
-} = function List({children, gap = 'loose', type = 'bullet'}: ListProps) {
-  const className = classNames(
+} = function List({
+  children,
+  gap = 'loose',
+  type = 'bullet',
+  className,
+}: ListProps) {
+  const classNameAll = classNames(
     styles.List,
     gap && styles[variationName('spacing', gap)],
     type && styles[variationName('type', type)],
+    className,
   );
 
   const ListElement = type === 'bullet' ? 'ul' : 'ol';
-  return <ListElement className={className}>{children}</ListElement>;
+  return <ListElement className={classNameAll}>{children}</ListElement>;
 };
 
 List.Item = Item;

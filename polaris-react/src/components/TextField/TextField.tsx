@@ -187,6 +187,7 @@ interface NonMutuallyExclusiveProps {
   autoSize?: boolean;
   /** Indicates the loading state */
   loading?: boolean;
+  className?: string;
 }
 
 export type MutuallyExclusiveSelectionProps =
@@ -257,6 +258,7 @@ export function TextField({
   tone,
   autoSize,
   loading,
+  className,
 }: TextFieldProps) {
   const i18n = useI18n();
   const [height, setHeight] = useState<number | null>(null);
@@ -306,7 +308,7 @@ export function TextField({
   const normalizedMax = max != null ? max : Infinity;
   const normalizedMin = min != null ? min : -Infinity;
 
-  const className = classNames(
+  const classNameInner = classNames(
     styles.TextField,
     Boolean(normalizedValue) && styles.hasValue,
     disabled && styles.disabled,
@@ -661,6 +663,7 @@ export function TextField({
 
   return (
     <Labelled
+      className={className}
       label={label}
       id={id}
       error={error}
@@ -672,7 +675,11 @@ export function TextField({
       readOnly={readOnly}
     >
       <Connected left={connectedLeft} right={connectedRight}>
-        <div className={className} onClick={handleClick} ref={textFieldRef}>
+        <div
+          className={classNameInner}
+          onClick={handleClick}
+          ref={textFieldRef}
+        >
           {prefixMarkup}
           {inputAndSuffixMarkup}
           {characterCountMarkup}

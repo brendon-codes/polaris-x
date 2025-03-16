@@ -35,6 +35,7 @@ export interface ProgressBarProps {
    * @default 'highlight'
    */
   tone?: Tone;
+  className?: string;
 }
 
 export function ProgressBar({
@@ -43,15 +44,17 @@ export function ProgressBar({
   tone = 'highlight',
   animated: hasAppearAnimation = true,
   ariaLabelledBy,
+  className,
 }: ProgressBarProps) {
   const theme = useTheme();
   const i18n = useI18n();
   const indicatorRef = useRef<HTMLDivElement>(null);
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.ProgressBar,
     size && styles[variationName('size', size)],
     tone && styles[variationName('tone', tone)],
+    className,
   );
 
   const warningMessage = i18n.translate(
@@ -69,7 +72,7 @@ export function ProgressBar({
 
   /* eslint-disable @shopify/jsx-no-hardcoded-content */
   return (
-    <div className={className}>
+    <div className={classNameAll}>
       <progress
         aria-labelledby={ariaLabelledBy}
         className={styles.Progress}

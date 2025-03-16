@@ -93,6 +93,7 @@ export interface LegacyFiltersProps {
   hideQueryField?: boolean;
   /** Disable the query field */
   disableQueryField?: boolean;
+  className?: string;
 }
 
 type CombinedProps = LegacyFiltersProps & {
@@ -144,6 +145,7 @@ class LegacyFiltersInner extends Component<CombinedProps, State> {
       disableQueryField = false,
       i18n,
       mediaQuery: {isNavigationCollapsed},
+      className,
     } = this.props;
     const {resourceName} = this.context;
     const {open, readyForFocus} = this.state;
@@ -435,7 +437,7 @@ class LegacyFiltersInner extends Component<CombinedProps, State> {
 
     return (
       <WithinFilterContext.Provider value>
-        <div className={styles.LegacyFilters}>
+        <div className={classNames(styles.LegacyFilters, className)}>
           {filtersControlMarkup}
           {filtersContainerMarkup}
           {tagsMarkup}

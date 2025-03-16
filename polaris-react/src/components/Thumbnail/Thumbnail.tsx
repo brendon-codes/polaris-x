@@ -20,6 +20,7 @@ export interface ThumbnailProps {
   alt: string;
   /** Transparent background */
   transparent?: boolean;
+  className?: string;
 }
 
 export function Thumbnail({
@@ -27,11 +28,13 @@ export function Thumbnail({
   alt,
   size = 'medium',
   transparent,
+  className,
 }: ThumbnailProps) {
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Thumbnail,
     size && styles[variationName('size', size)],
     transparent && styles.transparent,
+    className,
   );
 
   const content =
@@ -41,5 +44,5 @@ export function Thumbnail({
       <Icon accessibilityLabel={alt} source={source} />
     );
 
-  return <span className={className}>{content}</span>;
+  return <span className={classNameAll}>{content}</span>;
 }

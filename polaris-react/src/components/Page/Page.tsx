@@ -15,6 +15,7 @@ export interface PageProps extends HeaderProps {
   fullWidth?: boolean;
   /** Decreases the maximum layout width. Intended for single-column layouts */
   narrowWidth?: boolean;
+  className?: string;
 }
 
 export function Page({children, fullWidth, narrowWidth, ...rest}: PageProps) {
@@ -22,6 +23,7 @@ export function Page({children, fullWidth, narrowWidth, ...rest}: PageProps) {
     styles.Page,
     fullWidth && styles.fullWidth,
     narrowWidth && styles.narrowWidth,
+    rest.className,
   );
 
   const hasHeaderContent =

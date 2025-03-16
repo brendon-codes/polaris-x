@@ -103,6 +103,7 @@ export interface DataTableProps {
   firstColumnMinWidth?: string;
   /** Properties to enable pagination at the bottom of the table. */
   pagination?: DataTablePaginationProps;
+  className?: string;
 }
 
 type CombinedProps = DataTableProps & {
@@ -217,6 +218,7 @@ class DataTableInner extends PureComponent<CombinedProps, DataTableState> {
       condensed && styles.condensed,
       increasedTableDensity && styles.IncreasedTableDensity,
       stickyHeader && styles.StickyHeaderEnabled,
+      className,
     );
 
     const headingMarkup = (

@@ -22,6 +22,7 @@ export interface NavigationProps {
   ariaLabelledBy?: string;
   /** Accepts a component that is used to supplement the logo markup */
   logoSuffix?: React.ReactNode;
+  className?: string;
 }
 
 export const Navigation: React.FunctionComponent<NavigationProps> & {
@@ -34,6 +35,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> & {
   onDismiss,
   ariaLabelledBy,
   logoSuffix,
+  className,
 }: NavigationProps) {
   const {logo} = useFrame();
   const width = getWidth(logo, 104);
@@ -76,7 +78,10 @@ export const Navigation: React.FunctionComponent<NavigationProps> & {
   return (
     <NavigationContext.Provider value={context}>
       <WithinContentContext.Provider value>
-        <nav className={styles.Navigation} aria-labelledby={ariaLabelledBy}>
+        <nav
+          className={classNames(styles.Navigation, className)}
+          aria-labelledby={ariaLabelledBy}
+        >
           {mdUp ? mediaMarkup : null}
           <Scrollable className={styles.PrimaryNavigation}>
             {children}
