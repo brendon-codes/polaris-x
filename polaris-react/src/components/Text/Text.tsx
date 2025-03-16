@@ -79,6 +79,7 @@ export interface TextProps {
   visuallyHidden?: boolean;
   /** Add a line-through to the text */
   textDecorationLine?: TextDecorationLine;
+  className?: string;
 }
 
 export const Text = ({
@@ -94,6 +95,7 @@ export const Text = ({
   variant,
   visuallyHidden = false,
   textDecorationLine,
+  className,
 }: TextProps) => {
   if (
     process.env.NODE_ENV === 'development' &&
@@ -108,7 +110,7 @@ export const Text = ({
 
   const Component = as || (visuallyHidden ? 'span' : 'p');
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.root,
     variant && styles[variant],
     fontWeight && styles[fontWeight],
@@ -120,10 +122,11 @@ export const Text = ({
     truncate && styles.truncate,
     visuallyHidden && styles.visuallyHidden,
     textDecorationLine && styles[textDecorationLine],
+    className,
   );
 
   return (
-    <Component className={className} {...(id && {id})}>
+    <Component className={classNameAll} {...(id && {id})}>
       {children}
     </Component>
   );

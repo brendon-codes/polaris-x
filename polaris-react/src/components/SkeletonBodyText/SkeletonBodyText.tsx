@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {classNames} from '../../utilities/css';
+
 import styles from './SkeletonBodyText.module.css';
 
 export interface SkeletonBodyTextProps {
@@ -8,9 +10,13 @@ export interface SkeletonBodyTextProps {
    * @default 3
    */
   lines?: number;
+  className?: string;
 }
 
-export function SkeletonBodyText({lines = 3}: SkeletonBodyTextProps) {
+export function SkeletonBodyText({
+  lines = 3,
+  className,
+}: SkeletonBodyTextProps) {
   const bodyTextLines = [];
 
   for (let i = 0; i < lines; i++) {
@@ -18,6 +24,8 @@ export function SkeletonBodyText({lines = 3}: SkeletonBodyTextProps) {
   }
 
   return (
-    <div className={styles.SkeletonBodyTextContainer}>{bodyTextLines}</div>
+    <div className={classNames(styles.SkeletonBodyTextContainer, className)}>
+      {bodyTextLines}
+    </div>
   );
 }

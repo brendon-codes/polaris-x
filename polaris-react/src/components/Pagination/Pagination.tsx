@@ -49,6 +49,7 @@ export interface PaginationProps {
   label?: React.ReactNode;
   /** Layout structure of the component */
   type?: 'page' | 'table';
+  className?: string;
 }
 
 export function Pagination({
@@ -66,6 +67,7 @@ export function Pagination({
   accessibilityLabels,
   label,
   type = 'page',
+  className,
 }: PaginationProps) {
   const i18n = useI18n();
 
@@ -216,7 +218,11 @@ export function Pagination({
   ) : null;
 
   return (
-    <nav aria-label={navLabel} ref={node} className={styles.Pagination}>
+    <nav
+      aria-label={navLabel}
+      ref={node}
+      className={classNames(styles.Pagination, className)}
+    >
       {previousButtonEvents}
       {nextButtonEvents}
       <ButtonGroup variant="segmented">

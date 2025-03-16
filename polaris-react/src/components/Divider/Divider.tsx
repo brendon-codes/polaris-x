@@ -1,6 +1,8 @@
 import React from 'react';
 import type {BorderWidthScale, ColorBorderAlias} from '@shopify/polaris-tokens';
 
+import {classNames} from '../../utilities/css';
+
 import styles from './Divider.module.css';
 
 export interface DividerProps {
@@ -14,11 +16,13 @@ export interface DividerProps {
    * @default '025'
    */
   borderWidth?: BorderWidthScale;
+  className?: string;
 }
 
 export const Divider = ({
   borderColor = 'border-secondary',
   borderWidth = '025',
+  className,
 }: DividerProps) => {
   const borderColorValue =
     borderColor === 'transparent'
@@ -27,7 +31,7 @@ export const Divider = ({
 
   return (
     <hr
-      className={styles.Divider}
+      className={classNames(styles.Divider, className)}
       style={{
         borderBlockStart: `var(--p-border-width-${borderWidth}) solid ${borderColorValue}`,
       }}

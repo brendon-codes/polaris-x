@@ -128,6 +128,8 @@ export interface ResourceListProps<
   resolveItemId?(item: TItemType): string;
   /** Properties to enable pagination at the bottom of the list. */
   pagination?: ResourceListPaginationProps;
+  className?: string;
+  filterClassName?: string;
 }
 
 export function ResourceList<TItemType extends ResourceListItemData>({
@@ -156,6 +158,8 @@ export function ResourceList<TItemType extends ResourceListItemData>({
   idForItem = defaultIdForItem,
   resolveItemId,
   pagination,
+  className,
+  filterClassName,
 }: ResourceListProps<TItemType>) {
   const i18n = useI18n();
   const [selectMode, setSelectMode] = useState(
@@ -589,7 +593,12 @@ export function ResourceList<TItemType extends ResourceListItemData>({
   ) : null;
 
   const filterControlMarkup = filterControl ? (
-    <div className={classNames(!flushFilters && styles.FiltersWrapper)}>
+    <div
+      className={classNames(
+        !flushFilters && styles.FiltersWrapper,
+        filterClassName,
+      )}
+    >
       {filterControl}
     </div>
   ) : null;
@@ -725,13 +734,13 @@ export function ResourceList<TItemType extends ResourceListItemData>({
     </>
   ) : null;
 
-  const className = classNames(
+  const classNameLoadingOverlayWrapper = classNames(
     styles.ItemWrapper,
     loading && styles['ItemWrapper-isLoading'],
   );
   const loadingWithoutItemsMarkup =
     loading && !itemsExist ? (
-      <div className={className} tabIndex={-1}>
+      <div className={classNameLoadingOverlayWrapper} tabIndex={-1}>
         {loadingOverlay}
       </div>
     ) : null;
@@ -775,7 +784,7 @@ export function ResourceList<TItemType extends ResourceListItemData>({
   return (
     <ResourceListContext.Provider value={context}>
       {filterControlMarkup}
-      <div className={styles.ResourceListWrapper}>
+      <div className={classNames(styles.ResourceListWrapper, className)}>
         {headerMarkup}
         {listMarkup}
         {emptySearchStateMarkup}

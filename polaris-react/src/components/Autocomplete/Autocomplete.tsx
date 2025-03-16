@@ -44,6 +44,7 @@ export interface AutocompleteProps {
   onSelect(selected: string[]): void;
   /** Callback when the end of the list is reached */
   onLoadMoreResults?(): void;
+  className?: string;
 }
 
 // TypeScript can't generate types that correctly infer the typing of
@@ -66,6 +67,7 @@ export const Autocomplete: React.FunctionComponent<AutocompleteProps> & {
   emptyState,
   onSelect,
   onLoadMoreResults,
+  className,
 }: AutocompleteProps) {
   const i18n = useI18n();
 
@@ -184,6 +186,7 @@ export const Autocomplete: React.FunctionComponent<AutocompleteProps> & {
       onScrolledToBottom={onLoadMoreResults}
       preferredPosition={preferredPosition}
       willLoadMoreOptions={willLoadMoreResults}
+      className={className}
     >
       {actionMarkup || optionsMarkup || loadingMarkup || emptyStateMarkup ? (
         <Listbox autoSelection={autoSelection} onSelect={updateSelection}>

@@ -4,6 +4,7 @@ import type {SpaceScale} from '@shopify/polaris-tokens';
 import {
   getResponsiveProps,
   sanitizeCustomProperties,
+  classNames,
 } from '../../utilities/css';
 import type {ResponsiveProp} from '../../utilities/css';
 
@@ -25,6 +26,7 @@ export interface BleedProps extends React.AriaAttributes {
   marginInlineStart?: Spacing;
   /** Negative right space around children */
   marginInlineEnd?: Spacing;
+  className?: string;
 }
 
 export const Bleed = ({
@@ -34,6 +36,7 @@ export const Bleed = ({
   marginBlockEnd,
   marginInlineStart,
   marginInlineEnd,
+  className,
   children,
 }: BleedProps) => {
   const getNegativeMargins = (direction: string) => {
@@ -91,7 +94,10 @@ export const Bleed = ({
   } as React.CSSProperties;
 
   return (
-    <div className={styles.Bleed} style={sanitizeCustomProperties(style)}>
+    <div
+      className={classNames(styles.Bleed, className)}
+      style={sanitizeCustomProperties(style)}
+    >
       {children}
     </div>
   );

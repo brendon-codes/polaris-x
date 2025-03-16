@@ -40,6 +40,7 @@ export interface LegacyCardProps {
   footerActionAlignment?: 'right' | 'left';
   /** Allow the card to be hidden when printing */
   hideOnPrint?: boolean;
+  className?: string;
 }
 
 // TypeScript can't generate types that correctly infer the typing of
@@ -62,6 +63,7 @@ export const LegacyCard: React.FunctionComponent<LegacyCardProps> & {
   secondaryFooterActions,
   secondaryFooterActionsDisclosureText,
   footerActionAlignment = 'right',
+  className,
 }: LegacyCardProps) {
   const i18n = useI18n();
   const {
@@ -70,10 +72,11 @@ export const LegacyCard: React.FunctionComponent<LegacyCardProps> & {
   } = useToggle(false);
   const legacyCard = useLegacyCardPaddingObserverRef();
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.LegacyCard,
     subdued && styles.subdued,
     hideOnPrint && styles.hideOnPrint,
+    className,
   );
 
   const headerMarkup =
@@ -133,7 +136,7 @@ export const LegacyCard: React.FunctionComponent<LegacyCardProps> & {
 
   return (
     <WithinContentContext.Provider value>
-      <div className={className} ref={legacyCard}>
+      <div className={classNameAll} ref={legacyCard}>
         {headerMarkup}
         {content}
         {footerMarkup}

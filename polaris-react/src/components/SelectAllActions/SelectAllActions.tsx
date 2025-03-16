@@ -35,6 +35,7 @@ export interface SelectAllActionsProps {
   selected?: boolean | 'indeterminate';
   /** @deprecated Callback when the select all checkbox is clicked */
   onToggleAll?(): void;
+  className?: string;
 }
 
 /**
@@ -52,6 +53,7 @@ export const SelectAllActions = forwardRef(function SelectAllActions(
     accessibilityLabel,
     selected,
     onToggleAll,
+    className,
   }: SelectAllActionsProps,
   ref,
 ) {
@@ -96,6 +98,7 @@ export const SelectAllActions = forwardRef(function SelectAllActions(
           hasPagination && styles['SelectAllActions-hasPagination'],
           !isSticky && styles['SelectAllActions-not-sticky'],
           status && styles[`SelectAllActions-${status}`],
+          className,
         );
 
         return (

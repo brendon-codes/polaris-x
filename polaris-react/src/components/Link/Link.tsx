@@ -30,6 +30,7 @@ export interface LinkProps {
   accessibilityLabel?: string;
   /** Indicates whether or not the link is the primary navigation link when rendered inside of an `IndexTable.Row` */
   dataPrimaryLink?: boolean;
+  className?: string;
 }
 
 export function Link({
@@ -43,22 +44,24 @@ export function Link({
   removeUnderline,
   accessibilityLabel,
   dataPrimaryLink,
+  className,
 }: LinkProps) {
   return (
     <BannerContext.Consumer>
       {(BannerContext) => {
         const shouldBeMonochrome = monochrome || BannerContext;
 
-        const className = classNames(
+        const classNameAll = classNames(
           styles.Link,
           shouldBeMonochrome && styles.monochrome,
           removeUnderline && styles.removeUnderline,
+          className,
         );
 
         return url ? (
           <UnstyledLink
             onClick={onClick}
-            className={className}
+            className={classNameAll}
             url={url}
             external={external}
             target={target}
@@ -72,7 +75,7 @@ export function Link({
           <button
             type="button"
             onClick={onClick}
-            className={className}
+            className={classNameAll}
             id={id}
             aria-label={accessibilityLabel}
             data-primary-link={dataPrimaryLink}

@@ -67,6 +67,7 @@ export interface TooltipProps {
   onOpen?(): void;
   /* Callback fired when the tooltip is dismissed */
   onClose?(): void;
+  className?: string;
 }
 
 const HOVER_OUT_TIMEOUT = 150;
@@ -88,6 +89,7 @@ export function Tooltip({
   persistOnClick,
   onOpen,
   onClose,
+  className,
 }: TooltipProps) {
   const borderRadius = borderRadiusProp || '200';
 
@@ -200,6 +202,7 @@ export function Tooltip({
   const wrapperClassNames = classNames(
     activatorWrapper === 'div' && styles.TooltipContainer,
     hasUnderline && styles.HasUnderline,
+    className,
   );
 
   return (

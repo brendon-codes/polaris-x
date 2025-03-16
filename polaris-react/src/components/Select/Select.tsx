@@ -78,6 +78,7 @@ export interface SelectProps {
   requiredIndicator?: boolean;
   /** Indicates the tone of the select */
   tone?: 'magic';
+  className?: string;
 }
 
 const PLACEHOLDER_VALUE = '';
@@ -100,6 +101,7 @@ export function Select({
   onBlur,
   requiredIndicator,
   tone,
+  className,
 }: SelectProps) {
   const {value: focused, toggle: toggleFocused} = useToggle(false);
 
@@ -107,7 +109,7 @@ export function Select({
   const id = idProp ?? uniqId;
   const labelHidden = labelInline ? true : labelHiddenProp;
 
-  const className = classNames(
+  const classNameInner = classNames(
     styles.Select,
     error && styles.error,
     tone && styles[variationName('tone', tone)],
@@ -201,8 +203,9 @@ export function Select({
       helpText={helpText}
       requiredIndicator={requiredIndicator}
       disabled={disabled}
+      className={className}
     >
-      <div className={className}>
+      <div className={classNameInner}>
         <select
           id={id}
           name={name}

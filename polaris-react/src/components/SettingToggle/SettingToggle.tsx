@@ -13,6 +13,7 @@ export interface SettingToggleProps {
   action?: ComplexAction;
   /** Sets toggle state to activated or deactivated */
   enabled?: boolean;
+  className?: string;
 }
 
 /**
@@ -21,7 +22,12 @@ export interface SettingToggleProps {
  * setting toggles with layout and typography primitives.
  * https://polaris.shopify.com/components/deprecated/setting-toggle
  */
-export function SettingToggle({enabled, action, children}: SettingToggleProps) {
+export function SettingToggle({
+  enabled,
+  action,
+  children,
+  className,
+}: SettingToggleProps) {
   const id = useId();
 
   if (process.env.NODE_ENV === 'development') {
@@ -41,7 +47,7 @@ export function SettingToggle({enabled, action, children}: SettingToggleProps) {
     : null;
 
   return (
-    <LegacyCard sectioned>
+    <LegacyCard sectioned className={className}>
       <SettingAction action={actionMarkup}>
         <label htmlFor={id}>{children}</label>
       </SettingAction>

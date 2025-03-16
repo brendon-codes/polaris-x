@@ -21,6 +21,7 @@ export interface SkeletonPageProps {
   backAction?: boolean;
   /** The child elements to render in the skeleton page. */
   children?: React.ReactNode;
+  className?: string;
 }
 
 export function SkeletonPage({
@@ -30,6 +31,7 @@ export function SkeletonPage({
   primaryAction,
   title = '',
   backAction,
+  className,
 }: SkeletonPageProps) {
   const i18n = useI18n();
 
@@ -69,7 +71,7 @@ export function SkeletonPage({
   ) : null;
 
   return (
-    <BlockStack gap="400" inlineAlign="center">
+    <BlockStack gap="400" inlineAlign="center" className={className}>
       <Box
         width="100%"
         padding="0"

@@ -39,6 +39,7 @@ export interface ComboboxProps {
   onScrolledToBottom?(): void;
   /** Callback fired when the popover closes */
   onClose?(): void;
+  className?: string;
 }
 
 export function Combobox({
@@ -52,6 +53,7 @@ export function Combobox({
   minHeight,
   onScrolledToBottom,
   onClose,
+  className,
 }: ComboboxProps) {
   const [popoverActive, setPopoverActive] = useState(false);
   const [activeOptionId, setActiveOptionId] = useState<string>();
@@ -171,6 +173,7 @@ export function Combobox({
       preferInputActivator={false}
       preferredPosition={preferredPosition}
       onClose={handleClose}
+      className={className}
     >
       {Children.count(children) > 0 ? (
         <Popover.Pane

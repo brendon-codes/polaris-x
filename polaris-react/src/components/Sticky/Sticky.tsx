@@ -17,6 +17,7 @@ export type StickyProps = {
   disableWhenStacked?: boolean;
   /** Callback run when sticky header is added or removed  */
   onStickyChange?: (isSticky: boolean) => void;
+  className?: string;
 } & (
   | {children: React.ReactNode}
   | {children(isSticky: boolean): React.ReactNode}
@@ -93,14 +94,14 @@ class StickyInner extends Component<CombinedProps, State> {
 
   render() {
     const {style, isSticky} = this.state;
-    const {children} = this.props;
+    const {children, className} = this.props;
 
     const childrenContent = isFunction(children)
       ? children(isSticky)
       : children;
 
     return (
-      <div>
+      <div className={className}>
         <div ref={this.setPlaceHolderNode} />
         <div ref={this.setStickyNode} style={style}>
           {childrenContent}

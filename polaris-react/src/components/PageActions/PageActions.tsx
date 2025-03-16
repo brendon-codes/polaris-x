@@ -11,14 +11,18 @@ import {ButtonGroup} from '../ButtonGroup';
 import {buttonsFrom} from '../Button';
 import {isInterface} from '../../utilities/is-interface';
 import {isReactElement} from '../../utilities/is-react-element';
+import {classNames} from '../../utilities/css';
 
 import styles from './PageActions.module.css';
 
 export interface PageActionsProps {
   /** The primary action for the page */
-  primaryAction?: (DisableableAction & LoadableAction) | React.ReactNode;
+  primaryAction?:
+    | (DisableableAction & LoadableAction & React.ReactNode)
+    | React.ReactNode;
   /** The secondary actions for the page */
-  secondaryActions?: ComplexAction[] | React.ReactNode;
+  secondaryActions?: (ComplexAction[] & React.ReactNode) | React.ReactNode;
+  className?: string;
 }
 
 type MaybeJSX = JSX.Element | null;
@@ -26,6 +30,7 @@ type MaybeJSX = JSX.Element | null;
 export function PageActions({
   primaryAction,
   secondaryActions,
+  className,
 }: PageActionsProps) {
   let primaryActionMarkup: MaybeJSX = null;
   if (isReactElement(primaryAction)) {
@@ -44,7 +49,7 @@ export function PageActions({
   }
 
   return (
-    <div className={styles.PageActions}>
+    <div className={classNames(styles.PageActions, className)}>
       <LegacyStack distribution="trailing" spacing="tight">
         {secondaryActionsMarkup}
         {primaryActionMarkup}

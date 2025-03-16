@@ -103,6 +103,7 @@ export interface DropZoneProps {
   onDragLeave?(): void;
   /** Callback triggered when the file dialog is canceled */
   onFileDialogClose?(): void;
+  className?: string;
 }
 
 // TypeScript can't generate types that correctly infer the typing of
@@ -140,6 +141,7 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
   onDragEnter,
   onDragOver,
   onDragLeave,
+  className,
 }: DropZoneProps) {
   const node = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -421,6 +423,7 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
         label={labelValue}
         action={labelAction}
         labelHidden={labelHiddenValue}
+        className={className}
       >
         <div
           ref={node}

@@ -46,6 +46,7 @@ export interface ButtonProps extends BaseButton {
   tone?: 'critical' | 'success';
   /** Changes the visual appearance of the Button. */
   variant?: 'plain' | 'primary' | 'secondary' | 'tertiary' | 'monochromePlain';
+  className?: string;
 }
 
 interface CommonButtonProps
@@ -121,12 +122,13 @@ export function Button({
   dataPrimaryLink,
   tone,
   variant = 'secondary',
+  className,
 }: ButtonProps) {
   const i18n = useI18n();
   const isDisabled = disabled || loading;
   const {mdUp} = useBreakpoints();
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Button,
     styles.pressable,
     styles[variationName('variant', variant)],
@@ -141,6 +143,7 @@ export function Button({
     pressed && !disabled && !url && styles.pressed,
     removeUnderline && styles.removeUnderline,
     tone && styles[variationName('tone', tone)],
+    className,
   );
 
   const disclosureMarkup = disclosure ? (
@@ -206,7 +209,7 @@ export function Button({
 
   const commonProps: CommonButtonProps = {
     id,
-    className,
+    className: classNameAll,
     accessibilityLabel,
     ariaDescribedBy,
     role,

@@ -16,6 +16,7 @@ export function RangeSlider({
   max = 100,
   step = 1,
   value,
+  className,
   ...rest
 }: Props) {
   const id = useId();
@@ -29,9 +30,9 @@ export function RangeSlider({
   };
 
   return isDualThumb(value) ? (
-    <DualThumb value={value} {...sharedProps} />
+    <DualThumb value={value} {...sharedProps} className={className} />
   ) : (
-    <SingleThumb value={value} {...sharedProps} />
+    <SingleThumb value={value} {...sharedProps} className={className} />
   );
 }
 

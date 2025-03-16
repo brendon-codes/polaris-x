@@ -80,6 +80,8 @@ export interface PopoverProps {
    * @default false
    */
   captureOverscroll?: boolean;
+  className?: string;
+  portalClassName?: string;
 }
 
 type CloseTarget = 'activator' | 'next-node';
@@ -106,6 +108,8 @@ const PopoverComponent = forwardRef<PopoverPublicAPI, PopoverProps>(
       ariaHaspopup,
       preferInputActivator = true,
       zIndexOverride,
+      className,
+      portalClassName,
       ...rest
     },
     ref,
@@ -254,7 +258,7 @@ const PopoverComponent = forwardRef<PopoverPublicAPI, PopoverProps>(
 
     const portal =
       activatorNode && isDisplayed ? (
-        <Portal idPrefix="popover">
+        <Portal idPrefix="popover" className={portalClassName}>
           <PopoverOverlay
             ref={overlayRef}
             id={id}
@@ -272,7 +276,7 @@ const PopoverComponent = forwardRef<PopoverPublicAPI, PopoverProps>(
       ) : null;
 
     return (
-      <WrapperComponent ref={activatorContainer}>
+      <WrapperComponent ref={activatorContainer} className={className}>
         {Children.only(activator)}
         {portal}
       </WrapperComponent>

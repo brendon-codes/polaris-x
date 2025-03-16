@@ -47,6 +47,7 @@ export interface BlockStackProps extends React.AriaAttributes {
     React.AriaRole,
     'status' | 'presentation' | 'menu' | 'listbox' | 'combobox' | 'group'
   >;
+  className?: string;
 }
 
 export const BlockStack = ({
@@ -57,12 +58,14 @@ export const BlockStack = ({
   gap,
   id,
   reverseOrder = false,
+  className,
   ...restProps
 }: BlockStackProps) => {
-  const className = classNames(
+  const classNameAll = classNames(
     styles.BlockStack,
     (as === 'ul' || as === 'ol') && styles.listReset,
     as === 'fieldset' && styles.fieldsetReset,
+    className,
   );
 
   const style = {
@@ -75,7 +78,7 @@ export const BlockStack = ({
   return React.createElement(
     as,
     {
-      className,
+      className: classNameAll,
       id,
       style: sanitizeCustomProperties(style),
       ...restProps,

@@ -10,12 +10,14 @@ export interface PortalProps {
   children?: React.ReactNode;
   idPrefix?: string;
   onPortalCreated?(): void;
+  className?: string;
 }
 
 export function Portal({
   children,
   idPrefix = '',
   onPortalCreated = noop,
+  className,
 }: PortalProps) {
   const themeName = useThemeName();
   const {container} = usePortalsManager();
@@ -32,6 +34,7 @@ export function Portal({
         <ThemeProvider
           theme={isThemeNameLocal(themeName) ? themeName : themeNameDefault}
           data-portal-id={portalId}
+          className={className}
         >
           {children}
         </ThemeProvider>,

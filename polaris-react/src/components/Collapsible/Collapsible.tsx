@@ -37,6 +37,7 @@ export interface CollapsibleProps {
   onAnimationEnd?(): void;
   /** The content to display inside the collapsible. */
   children?: ReactNode;
+  className?: string;
 }
 
 type AnimationState = 'idle' | 'measuring' | 'animating';
@@ -49,6 +50,7 @@ export function Collapsible({
   transition = true,
   children,
   onAnimationEnd,
+  className,
 }: CollapsibleProps) {
   const [size, setSize] = useState(0);
   const [isOpen, setIsOpen] = useState(open);
@@ -68,6 +70,7 @@ export function Collapsible({
     expandOnPrint && styles.expandOnPrint,
     variant === 'inline' && styles.inline,
     animateIn && styles.animateIn,
+    className,
   );
 
   const transitionDisabled = isTransitionDisabled(transition);

@@ -73,6 +73,8 @@ interface ChoiceProps extends ChoiceBleedProps {
   helpText?: React.ReactNode;
   /** Indicates the tone of the choice */
   tone?: 'magic';
+  className?: string;
+  wrapperClassName?: string;
 }
 
 export function Choice({
@@ -92,13 +94,16 @@ export function Choice({
   bleedInlineStart,
   bleedInlineEnd,
   tone,
+  className,
+  wrapperClassName,
 }: ChoiceProps) {
-  const className = classNames(
+  const classNameAllLabel = classNames(
     styles.Choice,
     labelHidden && styles.labelHidden,
     disabled && styles.disabled,
     tone && styles[variationName('tone', tone)],
     labelClassName,
+    className,
   );
 
   const labelStyle = {
@@ -143,7 +148,7 @@ export function Choice({
     // - Can't pass negative values to padding
     // - Can't pass margins at all
     <label
-      className={className}
+      className={classNameAllLabel}
       htmlFor={id}
       onClick={onClick}
       style={sanitizeCustomProperties(labelStyle)}
@@ -185,7 +190,7 @@ export function Choice({
     ) : null;
 
   return descriptionMarkup ? (
-    <div>
+    <div className={wrapperClassName}>
       {labelMarkup}
       {descriptionMarkup}
     </div>
