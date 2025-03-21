@@ -8,11 +8,18 @@ export interface SkeletonTabsProps {
   count?: number;
   /** Fit tabs to container */
   fitted?: boolean;
+  className?: string;
 }
 
-export function SkeletonTabs({count = 2, fitted = false}: SkeletonTabsProps) {
+export function SkeletonTabs({
+  count = 2,
+  fitted = false,
+  className,
+}: SkeletonTabsProps) {
   return (
-    <div className={classNames(styles.Tabs, fitted && styles.fitted)}>
+    <div
+      className={classNames(styles.Tabs, fitted && styles.fitted, className)}
+    >
       {[...Array(count).keys()].map((key) => {
         return (
           <div key={key} className={classNames(styles.Tab)}>

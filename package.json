@@ -87,5 +87,10 @@
       "path": "polaris-react/build/esm/styles.css",
       "limit": "50 kB"
     }
-  ]
+  ],
+  "overrides": {
+    "jest-preset-stylelint": {
+      "jest": "^29.7.0"
+    }
+  }
 }

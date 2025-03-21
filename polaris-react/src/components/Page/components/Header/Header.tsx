@@ -179,7 +179,7 @@ export function Header({
       />
     );
   } else if (isReactElement(secondaryActions)) {
-    actionMenuMarkup = <>{secondaryActions}</>;
+    actionMenuMarkup = <>{secondaryActions as React.ReactNode}</>;
   }
 
   const navigationMarkup =

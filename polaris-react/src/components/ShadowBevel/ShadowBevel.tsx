@@ -4,7 +4,7 @@ import type {
   ShadowAliasOrScale,
 } from '@shopify/polaris-tokens';
 
-import {getResponsiveValue} from '../../utilities/css';
+import {getResponsiveValue, classNames} from '../../utilities/css';
 import type {ResponsiveProp} from '../../utilities/css';
 
 import styles from './ShadowBevel.module.css';
@@ -24,6 +24,7 @@ export interface ShadowBevelProps {
    * @default true
    */
   bevel?: ResponsiveProp<boolean>;
+  className?: string;
 }
 
 export function ShadowBevel(props: ShadowBevelProps) {
@@ -34,13 +35,14 @@ export function ShadowBevel(props: ShadowBevelProps) {
     boxShadow,
     children,
     zIndex = '0',
+    className,
   } = props;
 
   const Component = as;
 
   return (
     <Component
-      className={styles.ShadowBevel}
+      className={classNames(styles.ShadowBevel, className)}
       style={{
         '--pc-shadow-bevel-z-index': zIndex,
         ...getResponsiveValue(

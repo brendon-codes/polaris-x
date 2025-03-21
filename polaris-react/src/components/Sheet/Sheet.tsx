@@ -43,6 +43,7 @@ export interface SheetProps {
   accessibilityLabel: string;
   /** The element or the RefObject that activates the Sheet */
   activator?: React.RefObject<HTMLElement> | React.ReactElement;
+  className?: string;
 }
 
 /** @deprecated Use Modal instead or avoid modal patterns all together. */
@@ -54,6 +55,7 @@ export function Sheet({
   onExit,
   accessibilityLabel,
   activator,
+  className,
 }: SheetProps) {
   const theme = useTheme();
   const {isNavigationCollapsed} = useMediaQuery();
@@ -89,7 +91,7 @@ export function Sheet({
   return (
     <>
       {activatorMarkup}
-      <Portal idPrefix="sheet">
+      <Portal idPrefix="sheet" className={className}>
         <CSSTransition
           nodeRef={container}
           classNames={

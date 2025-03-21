@@ -26,6 +26,7 @@ export interface LegacyTabsProps {
   disclosureText?: string;
   /** Callback when tab is selected */
   onSelect?(selectedTabIndex: number): void;
+  className?: string;
 }
 
 type CombinedProps = LegacyTabsProps & {
@@ -74,7 +75,8 @@ class TabsInner extends PureComponent<CombinedProps, State> {
   };
 
   render() {
-    const {tabs, selected, fitted, children, i18n, disclosureText} = this.props;
+    const {tabs, selected, fitted, children, i18n, disclosureText, className} =
+      this.props;
     const {tabToFocus, visibleTabs, hiddenTabs, showDisclosure} = this.state;
     const disclosureTabs = hiddenTabs.map((tabIndex) => tabs[tabIndex]);
 
@@ -156,7 +158,7 @@ class TabsInner extends PureComponent<CombinedProps, State> {
     );
 
     return (
-      <div>
+      <div className={className}>
         <Box
           borderBlockEndWidth="025"
           borderColor="border-secondary"

@@ -24,6 +24,7 @@ export interface NonMutuallyExclusiveProps {
   url?: string;
   /** The size of the tag */
   size?: 'large';
+  className?: string;
 }
 
 export type TagProps = NonMutuallyExclusiveProps &
@@ -40,11 +41,12 @@ export function Tag({
   accessibilityLabel,
   url,
   size,
+  className,
 }: TagProps) {
   const i18n = useI18n();
 
   const segmented = onRemove && url;
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Tag,
     disabled && styles.disabled,
     onClick && styles.clickable,
@@ -52,6 +54,7 @@ export function Tag({
     url && !disabled && styles.linkable,
     segmented && styles.segmented,
     size && styles[variationName('size', size)],
+    className,
   );
 
   let tagTitle = accessibilityLabel;
@@ -111,7 +114,7 @@ export function Tag({
     );
 
   return (
-    <span className={className} aria-disabled={disabled}>
+    <span className={classNameAll} aria-disabled={disabled}>
       {tagContent}
       {size === 'large' && <span className={styles.overlay} />}
       {removeButton}

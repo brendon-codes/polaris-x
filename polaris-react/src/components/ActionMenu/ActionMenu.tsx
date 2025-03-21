@@ -21,6 +21,7 @@ export interface ActionMenuProps {
   rollupActionsLabel?: string;
   /** Callback that returns true when secondary actions are rolled up into action groups, and false when not */
   onActionRollup?(hasRolledUp: boolean): void;
+  className?: string;
 }
 
 export function ActionMenu({
@@ -29,6 +30,7 @@ export function ActionMenu({
   rollup,
   rollupActionsLabel,
   onActionRollup,
+  className,
 }: ActionMenuProps) {
   if (actions.length === 0 && groups.length === 0) {
     return null;
@@ -37,6 +39,7 @@ export function ActionMenu({
   const actionMenuClassNames = classNames(
     styles.ActionMenu,
     rollup && styles.rollup,
+    className,
   );
 
   const rollupSections = groups.map((group) => convertGroupToSection(group));

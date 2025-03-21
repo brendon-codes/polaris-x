@@ -12,6 +12,7 @@ export interface LinkLikeComponentProps
   target?: Target;
   /** Makes the browser download the url instead of opening it. Provides a hint for the downloaded filename if it is a string value. */
   download?: string | boolean;
+  className?: string;
   [key: string]: any;
 }
 

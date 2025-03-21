@@ -67,6 +67,7 @@ export interface ModalProps extends FooterProps {
   activatorWrapper?: Element;
   /** Removes Scrollable container from the modal content */
   noScroll?: boolean;
+  className?: string;
 }
 
 export const Modal: React.FunctionComponent<ModalProps> & {
@@ -93,6 +94,7 @@ export const Modal: React.FunctionComponent<ModalProps> & {
   onIFrameLoad,
   onTransitionEnd,
   noScroll,
+  className,
 }: ModalProps) {
   const [iframeHeight, setIframeHeight] = useState(IFRAME_LOADING_HEIGHT);
   const [closing, setClosing] = useState(false);
@@ -236,7 +238,7 @@ export const Modal: React.FunctionComponent<ModalProps> & {
   return (
     <WithinContentContext.Provider value>
       {activatorMarkup}
-      <Portal idPrefix="modal">
+      <Portal idPrefix="modal" className={className}>
         <TransitionGroup appear={animated} enter={animated} exit={animated}>
           {dialog}
         </TransitionGroup>

@@ -150,6 +150,7 @@ export interface BoxProps extends React.AriaAttributes {
   visuallyHidden?: boolean;
   /** z-index of box */
   zIndex?: string;
+  className?: string;
 }
 
 export const Box = forwardRef<HTMLElement, BoxProps>(
@@ -200,6 +201,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       insetInlineEnd,
       zIndex,
       opacity,
+      className,
       ...restProps
     },
     ref,
@@ -320,17 +322,18 @@ export const Box = forwardRef<HTMLElement, BoxProps>(
       opacity,
     } as React.CSSProperties;
 
-    const className = classNames(
+    const classNameAll = classNames(
       styles.Box,
       visuallyHidden && styles.visuallyHidden,
       printHidden && styles.printHidden,
       as === 'ul' && styles.listReset,
+      className,
     );
 
     return React.createElement(
       as,
       {
-        className,
+        classNameAll,
         id,
         ref,
         style: sanitizeCustomProperties(style),

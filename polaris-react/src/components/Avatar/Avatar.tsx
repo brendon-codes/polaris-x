@@ -71,6 +71,7 @@ export interface AvatarProps {
   onError?(): void;
   /** Accessible label for the avatar image */
   accessibilityLabel?: string;
+  className?: string;
 }
 
 export function Avatar({
@@ -81,6 +82,7 @@ export function Avatar({
   customer,
   size = 'md',
   accessibilityLabel,
+  className,
 }: AvatarProps) {
   const i18n = useI18n();
   const isAfterInitialMount = useIsAfterInitialMount();
@@ -119,13 +121,14 @@ export function Avatar({
     });
   }
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Avatar,
     size && styles[variationName('size', size)],
     hasImage && status === Status.Loaded && styles.imageHasLoaded,
     !customer &&
       !hasImage &&
       styles[variationName('style', styleClass(nameString))],
+    className,
   );
 
   const textClassName = classNames(
@@ -199,7 +202,7 @@ export function Avatar({
     <span
       aria-label={label}
       role={label ? 'img' : 'presentation'}
-      className={className}
+      className={classNameAll}
     >
       {svgMarkup}
       {imageMarkUp}

@@ -30,6 +30,8 @@ export interface ActionListProps {
   filterLabel?: string;
   /** Callback when any item is clicked or keypressed */
   onActionAnyItem?: ActionListItemDescriptor['onAction'];
+  className?: string;
+  filterClassName?: string;
 }
 
 const FILTER_ACTIONS_THRESHOLD = 8;
@@ -43,6 +45,8 @@ export function ActionList({
   allowFiltering,
   onActionAnyItem,
   filterLabel,
+  className,
+  filterClassName,
 }: ActionListProps) {
   const i18n = useI18n();
   const filterActions = useContext(FilterActionsContext);
@@ -152,6 +156,7 @@ export function ActionList({
         <Box
           padding="200"
           paddingBlockEnd={totalFilteredActions > 0 ? '0' : '200'}
+          className={filterClassName}
         >
           <TextField
             clearButton
@@ -179,6 +184,7 @@ export function ActionList({
         ref={actionListRef}
         role={elementRole}
         tabIndex={elementTabIndex}
+        className={className}
       >
         {listeners}
         {sectionMarkup}

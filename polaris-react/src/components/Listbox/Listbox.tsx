@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import type {ReactNode} from 'react';
 
+import {classNames} from '../../utilities/css';
 import {debounce} from '../../utilities/debounce';
 import {useToggle} from '../../utilities/use-toggle';
 import {useComboboxListbox} from '../../utilities/combobox';
@@ -59,6 +60,7 @@ export interface ListboxProps {
   onSelect?(value: string): void;
   /** Callback fired when an option becomes active */
   onActiveOptionChange?(value: string, domId: string): void;
+  className?: string;
 }
 
 export type ArrowKeys = 'up' | 'down';
@@ -76,6 +78,7 @@ export function Listbox({
   customListId,
   onSelect,
   onActiveOptionChange,
+  className,
 }: ListboxProps) {
   const [loading, setLoading] = useState<string>();
   const [activeOption, setActiveOption] = useState<NavigableOption>();
@@ -495,7 +498,7 @@ export function Listbox({
             <ul
               tabIndex={0}
               role="listbox"
-              className={styles.Listbox}
+              className={classNames(styles.Listbox, className)}
               aria-label={inCombobox ? undefined : accessibilityLabel}
               aria-labelledby={textFieldLabelId}
               aria-busy={Boolean(loading)}

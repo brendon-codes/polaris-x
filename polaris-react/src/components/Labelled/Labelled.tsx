@@ -33,6 +33,7 @@ export interface LabelledProps {
   disabled?: boolean;
   /** Labels signify a readOnly control */
   readOnly?: boolean;
+  className?: string;
 }
 
 export function Labelled({
@@ -46,12 +47,14 @@ export function Labelled({
   requiredIndicator,
   disabled,
   readOnly,
+  className,
   ...rest
 }: LabelledProps) {
-  const className = classNames(
+  const classNameAll = classNames(
     labelHidden && styles.hidden,
     disabled && styles.disabled,
     readOnly && styles.readOnly,
+    className,
   );
 
   const actionMarkup = action ? (
@@ -94,7 +97,7 @@ export function Labelled({
   ) : null;
 
   return (
-    <div className={className}>
+    <div className={classNameAll}>
       {labelMarkup}
       {children}
       {errorMarkup}

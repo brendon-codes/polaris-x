@@ -21,20 +21,25 @@ export interface SkeletonDisplayTextProps {
    * @default '120px'
    */
   maxWidth?: `${number}ch` | `${number}%`;
+  className?: string;
 }
 
 export function SkeletonDisplayText({
   size = 'medium',
   maxWidth,
+  className,
 }: SkeletonDisplayTextProps) {
-  const className = classNames(
+  const classNameAll = classNames(
     styles.DisplayText,
     size && styles[variationName('size', size)],
+    className,
   );
 
   const style = {
     '--pc-skeleton-display-text-max-width': maxWidth ?? undefined,
   } as React.CSSProperties;
 
-  return <div className={className} style={sanitizeCustomProperties(style)} />;
+  return (
+    <div className={classNameAll} style={sanitizeCustomProperties(style)} />
+  );
 }

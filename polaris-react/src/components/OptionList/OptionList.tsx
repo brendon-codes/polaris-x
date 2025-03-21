@@ -40,6 +40,7 @@ export interface OptionListProps {
   onPointerEnterOption?(selected: string): void;
   /** Callback when focusing an option */
   onFocusOption?(selected: string): void;
+  className?: string;
 }
 
 export function OptionList({
@@ -54,6 +55,7 @@ export function OptionList({
   id: idProp,
   onPointerEnterOption,
   onFocusOption,
+  className,
 }: OptionListProps) {
   const [normalizedOptions, setNormalizedOptions] = useState(
     createNormalizedOptions(options, sections, title),
@@ -194,7 +196,12 @@ export function OptionList({
     : null;
 
   return (
-    <Box as="ul" role={role as BoxProps['role']} padding="150">
+    <Box
+      as="ul"
+      role={role as BoxProps['role']}
+      padding="150"
+      className={className}
+    >
       {optionsMarkup}
     </Box>
   );

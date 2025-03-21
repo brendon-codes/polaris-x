@@ -16,6 +16,7 @@ export interface SingleThumbProps extends RangeSliderProps {
   min: number;
   max: number;
   step: number;
+  className?: string;
 }
 
 export function SingleThumb(props: SingleThumbProps) {
@@ -36,6 +37,7 @@ export function SingleThumb(props: SingleThumbProps) {
     step,
     onBlur,
     onFocus,
+    className,
   } = props;
   const clampedValue = clamp(value, min, max);
   const describedBy: string[] = [];
@@ -77,7 +79,7 @@ export function SingleThumb(props: SingleThumbProps) {
 
   const suffixMarkup = suffix && <div className={styles.Suffix}>{suffix}</div>;
 
-  const className = classNames(
+  const classNameInner = classNames(
     styles.SingleThumb,
     sharedStyles.RangeSlider,
     error && styles.error,
@@ -93,8 +95,9 @@ export function SingleThumb(props: SingleThumbProps) {
       action={labelAction}
       labelHidden={labelHidden}
       helpText={helpText}
+      className={className}
     >
-      <div className={className} style={cssVars}>
+      <div className={classNameInner} style={cssVars}>
         {prefixMarkup}
         <div
           className={classNames(

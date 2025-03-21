@@ -53,6 +53,7 @@ export interface BannerProps {
   onDismiss?(): void;
   /** Disables screen reader announcements when changing the content of the banner */
   stopAnnouncements?: boolean;
+  className?: string;
 }
 
 export const Banner = forwardRef<BannerHandles, BannerProps>(function Banner(
@@ -63,16 +64,17 @@ export const Banner = forwardRef<BannerHandles, BannerProps>(function Banner(
   const withinContentContainer = useContext(WithinContentContext);
   const {wrapperRef, handleKeyUp, handleBlur, handleMouseUp, shouldShowFocus} =
     useBannerFocus(bannerRef);
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Banner,
     shouldShowFocus && styles.keyFocused,
     withinContentContainer ? styles.withinContentContainer : styles.withinPage,
+    props.className,
   );
 
   return (
     <BannerContext.Provider value>
       <div
-        className={className}
+        className={classNameAll}
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={0}
         ref={wrapperRef}

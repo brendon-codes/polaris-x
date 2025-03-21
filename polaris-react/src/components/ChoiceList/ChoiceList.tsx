@@ -49,6 +49,7 @@ export interface ChoiceListProps {
   onChange?(selected: string[], name: string): void;
   /** Indicates the tone of the choice list */
   tone?: 'magic';
+  className?: string;
 }
 
 export function ChoiceList({
@@ -62,6 +63,7 @@ export function ChoiceList({
   disabled = false,
   name: nameProp,
   tone,
+  className,
 }: ChoiceListProps) {
   // Type asserting to any is required for TS3.2 but can be removed when we update to 3.3
   // see https://github.com/Microsoft/TypeScript/issues/28768
@@ -141,6 +143,7 @@ export function ChoiceList({
       gap={{xs: '400', md: '0'}}
       aria-invalid={error != null}
       id={finalName}
+      className={className}
     >
       {titleMarkup}
       <BlockStack as="ul" gap={{xs: '400', md: '0'}}>

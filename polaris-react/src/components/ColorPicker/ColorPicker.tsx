@@ -33,6 +33,7 @@ export interface ColorPickerProps {
   fullWidth?: boolean;
   /** Callback when color is selected */
   onChange(color: HSBAColor): void;
+  className?: string;
 }
 
 const RESIZE_DEBOUNCE_TIME_MS = 200;
@@ -100,7 +101,7 @@ export class ColorPicker extends PureComponent<ColorPickerProps, State> {
   }
 
   render() {
-    const {id, color, allowAlpha, fullWidth} = this.props;
+    const {id, color, allowAlpha, fullWidth, className} = this.props;
     const {hue, saturation, brightness, alpha: providedAlpha} = color;
     const {pickerSize} = this.state;
 
@@ -122,13 +123,14 @@ export class ColorPicker extends PureComponent<ColorPickerProps, State> {
       />
     ) : null;
 
-    const className = classNames(
+    const classNameAll = classNames(
       styles.ColorPicker,
       fullWidth && styles.fullWidth,
+      className,
     );
 
     return (
-      <div className={className} id={id} onMouseDown={this.handlePickerDrag}>
+      <div className={classNameAll} id={id} onMouseDown={this.handlePickerDrag}>
         <div ref={this.setColorNode} className={styles.MainColor}>
           <div
             className={styles.ColorLayer}

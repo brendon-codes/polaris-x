@@ -26,6 +26,7 @@ export interface AccountConnectionProps {
   connected?: boolean;
   /** Action for account connection */
   action?: Action;
+  className?: string;
 }
 
 export function AccountConnection({
@@ -36,6 +37,7 @@ export function AccountConnection({
   title,
   details,
   termsOfService,
+  className,
 }: AccountConnectionProps) {
   const breakpoints = useBreakpoints();
 
@@ -84,7 +86,7 @@ export function AccountConnection({
     : null;
 
   return (
-    <Card>
+    <Card className={className}>
       <SettingAction action={actionElement}>
         <InlineStack gap="400">
           {avatarMarkup}

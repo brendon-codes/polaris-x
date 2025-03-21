@@ -66,6 +66,7 @@ interface BaseProps {
   onMouseOver?: () => void;
   /** Callback when mouse cursor leaves item */
   onMouseOut?: () => void;
+  className?: string;
 }
 
 interface PropsWithUrl extends BaseProps {
@@ -162,6 +163,7 @@ class BaseResourceItem extends Component<CombinedProps, State> {
       breakpoints,
       onMouseOver,
       disabled,
+      className,
     } = this.props;
 
     const {actionsMenuVisible, focused, focusedInner, selected} = this.state;
@@ -214,7 +216,7 @@ class BaseResourceItem extends Component<CombinedProps, State> {
       );
     }
 
-    const className = classNames(
+    const classNameInner = classNames(
       styles.ResourceItem,
       focused && styles.focused,
       selectable && styles.selectable,
@@ -231,6 +233,7 @@ class BaseResourceItem extends Component<CombinedProps, State> {
       hasBulkActions && styles.hasBulkActions,
       selected && styles.selected,
       selectable && styles.selectable,
+      className,
     );
 
     let actionsMarkup: React.ReactNode | null = null;
@@ -354,7 +357,7 @@ class BaseResourceItem extends Component<CombinedProps, State> {
         <div className={styles.ItemWrapper}>
           <div
             ref={this.setNode}
-            className={className}
+            className={classNameInner}
             onClick={disabled ? () => {} : this.handleClick}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}

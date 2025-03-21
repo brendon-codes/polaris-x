@@ -28,6 +28,7 @@ interface NonMutuallyExclusiveProps {
   size?: Size;
   /** Pass a custom accessibilityLabel */
   toneAndProgressLabelOverride?: string;
+  className?: string;
 }
 
 export type BadgeProps = NonMutuallyExclusiveProps &
@@ -67,15 +68,17 @@ export function Badge({
   icon,
   size = DEFAULT_SIZE,
   toneAndProgressLabelOverride,
+  className,
 }: BadgeProps) {
   const i18n = useI18n();
   const withinFilter = useContext(WithinFilterContext);
 
-  const className = classNames(
+  const classNameAll = classNames(
     styles.Badge,
     tone && styles[variationName('tone', tone)],
     size && size !== DEFAULT_SIZE && styles[variationName('size', size)],
     withinFilter && styles.withinFilter,
+    className,
   );
 
   const accessibilityLabel = toneAndProgressLabelOverride
@@ -100,7 +103,7 @@ export function Badge({
   }
 
   return (
-    <span className={className}>
+    <span className={classNameAll}>
       {accessibilityMarkup}
       {icon && (
         <span className={styles.Icon}>

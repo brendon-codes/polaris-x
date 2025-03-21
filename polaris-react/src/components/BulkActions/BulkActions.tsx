@@ -78,6 +78,7 @@ export interface BulkActionsProps {
   isSticky?: boolean;
   /** @deprecated The width of the BulkActions */
   width?: number;
+  className?: string;
 }
 
 interface BulkActionsState {
@@ -104,6 +105,7 @@ export const BulkActions = forwardRef(function BulkActions(
     onMoreActionPopoverToggle,
     width,
     selectMode,
+    className,
   }: BulkActionsProps,
   ref,
 ) {
@@ -361,7 +363,10 @@ export const BulkActions = forwardRef(function BulkActions(
   );
 
   return (
-    <div className={styles.BulkActions} style={width ? {width} : undefined}>
+    <div
+      className={classNames(styles.BulkActions, className)}
+      style={width ? {width} : undefined}
+    >
       <InlineStack gap="400" blockAlign="center">
         <div className={styles.BulkActionsSelectAllWrapper}>
           <CheckableButton {...checkableButtonProps} />

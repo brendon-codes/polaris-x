@@ -53,6 +53,7 @@ export interface CheckboxProps extends ChoiceBleedProps {
   error?: Error | boolean;
   /** Indicates the tone of the checkbox */
   tone?: 'magic';
+  className?: string;
 }
 
 export const Checkbox = forwardRef<CheckboxHandles, CheckboxProps>(
@@ -80,6 +81,7 @@ export const Checkbox = forwardRef<CheckboxHandles, CheckboxProps>(
       bleedInlineStart,
       bleedInlineEnd,
       tone,
+      className,
     }: CheckboxProps,
     ref,
   ) {
@@ -178,6 +180,7 @@ export const Checkbox = forwardRef<CheckboxHandles, CheckboxProps>(
         labelClassName={classNames(styles.ChoiceLabel, labelClassName)}
         fill={fill}
         tone={tone}
+        className={className}
         {...extraChoiceProps}
       >
         <span className={wrapperClassName}>

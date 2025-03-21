@@ -39,6 +39,7 @@ export interface TopBarProps {
   onNavigationToggle?(): void;
   /** Accepts a component that is used to supplement the logo markup */
   logoSuffix?: React.ReactNode;
+  className?: string;
 }
 
 // TypeScript can't generate types that correctly infer the typing of
@@ -62,6 +63,7 @@ export const TopBar: React.FunctionComponent<TopBarProps> & {
   onSearchResultsDismiss,
   contextControl,
   logoSuffix,
+  className,
 }: TopBarProps) {
   const i18n = useI18n();
   const {logo} = useFrame();
@@ -141,7 +143,7 @@ export const TopBar: React.FunctionComponent<TopBarProps> & {
   ) : null;
 
   return (
-    <div className={styles.TopBar}>
+    <div className={classNames(styles.TopBar, className)}>
       <div className={styles.Container}>
         <div className={styles.LeftContent}>
           {navigationButtonMarkup}
